@@ -1,6 +1,6 @@
 # Simple-Linear-Regression
-This project is a simple linear regression analysis of a database of Perch.
-The goal was to analyze the data and estimate the fish's weight by its length
+This project is a simple linear regression analysis of a database of common fish species.
+The goal was to analyze the data and estimate the chosen fish's weight by its length.
 
 Dataset:
 https://www.kaggle.com/datasets/aungpyaeap/fish-market
