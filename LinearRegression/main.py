@@ -6,18 +6,14 @@ import matplotlib.pyplot as plt
 
 
 def dataset():
-    x = []  # length
-    y = []  # weight
-
     reader = pd.read_csv("Perch.csv")
     x = reader.Length2.values
     y = reader.Weight.values
 
-    x_num = numpy.array(x, dtype=numpy.float64)
-    y_num = numpy.array(y, dtype=numpy.float64)
-    x_num.sort()
-    x_num.sort()
-    return x_num, y_num
+    x.sort()
+    x.sort()
+
+    return x, y
 
 
 def compute_cost(x, y, w, b):
