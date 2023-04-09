@@ -52,12 +52,10 @@ def gradient_descent(x, y, w, b, iteration_count, alpha):
         w = w - alpha * dj_dw
         b = b - alpha * dj_db
 
-        if i < 100000:
-            cost = compute_cost(x, y, w, b)
-            j_history.append(cost)
-
         # Print cost every at intervals 10 times or as many iterations if < 10
         if i % math.ceil(iteration_count / 10) == 0:
+            cost = compute_cost(x, y, w, b)
+            j_history.append(cost)
             print(f"Iteration {i:4}: Cost {float(j_history[-1]):8.2f}")
 
     print("w,b found by gradient descent:", w, b)
@@ -66,7 +64,7 @@ def gradient_descent(x, y, w, b, iteration_count, alpha):
 
 if __name__ == '__main__':
     numpy.seterr(all="raise")
-    fish_name_list = ["Persch", "Bream", "Roach", "Whitefish", "Parkki", "Pike", "Smelt"]
+    fish_name_list = ["Perch", "Bream", "Roach", "Whitefish", "Parkki", "Pike", "Smelt"]
     while 1:
         fish_name = input(f"Enter a Fish Name \n{fish_name_list}:").title()
         if fish_name in fish_name_list:
