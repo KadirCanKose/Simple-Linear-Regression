@@ -5,13 +5,11 @@ import math
 import matplotlib.pyplot as plt
 
 
-def dataset():
-    reader = pd.read_csv("Perch.csv")
+def dataset(fish):
+    reader = pd.read_csv("Fish.csv")
+    reader = reader[reader["Species"].str.contains(f"{fish}")]
     x = reader.Length2.values
     y = reader.Weight.values
-
-    x.sort()
-    x.sort()
 
     return x, y
 
@@ -68,7 +66,15 @@ def gradient_descent(x, y, w, b, iteration_count, alpha):
 
 if __name__ == '__main__':
     numpy.seterr(all="raise")
-    x_train, y_train = dataset()
+    fish_name_list = ["Persch", "Bream", "Roach", "Whitefish", "Parkki", "Pike", "Smelt"]
+    while 1:
+        fish_name = input(f"Enter a Fish Name \n{fish_name_list}:").title()
+        if fish_name in fish_name_list:
+            break
+        else:
+            print("\nEnter a valid name.\n")
+
+    x_train, y_train = dataset(fish_name)
 
     iterations = int(input("Input iteration count:"))
     alpha = float(input("Input alpha(0.001~ recommended):"))
@@ -77,7 +83,7 @@ if __name__ == '__main__':
         w_final, b_final = gradient_descent(x_train, y_train, 2, 2, iterations, alpha)
 
     except Exception as exp:
-        print(exp, "\nPlease try a lower alpha")
+        print(exp, "\nPlease try again")
         input()
         sys.exit()
 
@@ -90,9 +96,9 @@ if __name__ == '__main__':
 
         plt.plot(x_train, prediction, c="b")
         plt.scatter(x_train, y_train, marker="X", c="r")
-        plt.title("Diagonal Length vs Weight ")
+        plt.title(f"Length vs Weight for {fish_name}")
         plt.ylabel("Weight")
-        plt.xlabel("Diagonal Length")
+        plt.xlabel("Length")
         plt.show()
 
     while 1:
@@ -101,4 +107,4 @@ if __name__ == '__main__':
         except Exception as exp:
             print(exp, "\nPlease try again.")
         else:
-            print(f"\nA fish that has a {user_length} cm of diagonal length is nearly {(w_final * user_length + b_final):.2f} gram.")
+            print(f"\nA {fish_name} that has a {user_length} cm of length is nearly {(w_final * user_length + b_final):.2f} gram.")
